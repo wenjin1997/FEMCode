@@ -1,0 +1,211 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global}
+    \entry{FEM-何晓明}{online}{}
+      \name{author}{1}{}{%
+        {{hash=fb9bbbf7ef4b4c36087e2a2208516848}{%
+           family={He},
+           familyi={H\bibinitperiod},
+           given={Xiaoming},
+           giveni={X\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {english}%
+      }
+      \strng{namehash}{fb9bbbf7ef4b4c36087e2a2208516848}
+      \strng{fullhash}{fb9bbbf7ef4b4c36087e2a2208516848}
+      \strng{bibnamehash}{fb9bbbf7ef4b4c36087e2a2208516848}
+      \strng{authorbibnamehash}{fb9bbbf7ef4b4c36087e2a2208516848}
+      \strng{authornamehash}{fb9bbbf7ef4b4c36087e2a2208516848}
+      \strng{authorfullhash}{fb9bbbf7ef4b4c36087e2a2208516848}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{langid}{english}
+      \field{lansortorder}{4}
+      \field{title}{Introduction and Basic Implementation for Finite Element Methods}
+      \field{usera}{EB}
+      \field{userd}{english}
+      \field{userf}{english}
+      \verb{urlraw}
+      \verb https://www.bilibili.com/video/BV1Zv411t7Lj?spm_id_from=333.999.0.0
+      \endverb
+      \verb{url}
+      \verb https://www.bilibili.com/video/BV1Zv411t7Lj?spm_id_from=333.999.0.0
+      \endverb
+      \keyw{FEM-何晓明}
+      \warn{\item Entry 'FEM-何晓明' (bib/sample.bib): Invalid format 'September 29, 2021' of date field 'urldate' - ignoring}
+    \endentry
+    \entry{有限元方法的数学基础}{book}{}
+      \name{author}{2}{}{%
+        {{hash=7a5d6f42f5cab8fc0f19b46ec3512d4f}{%
+           family={王烈衡},
+           familyi={王\bibinitperiod}}}%
+        {{hash=170a4517c1f665efd455c938b1cfbcc8}{%
+           family={许学军},
+           familyi={许\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {chinese}%
+      }
+      \list{location}{1}{%
+        {北京}%
+      }
+      \list{publisher}{1}{%
+        {科学出版社}%
+      }
+      \strng{namehash}{50e1f3892b1e944fe39f6272451bcf0a}
+      \strng{fullhash}{851a5af2eafe1a86b48b935de87fa453}
+      \strng{bibnamehash}{851a5af2eafe1a86b48b935de87fa453}
+      \strng{authorbibnamehash}{851a5af2eafe1a86b48b935de87fa453}
+      \strng{authornamehash}{50e1f3892b1e944fe39f6272451bcf0a}
+      \strng{authorfullhash}{851a5af2eafe1a86b48b935de87fa453}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{langid}{english}
+      \field{lansortorder}{1}
+      \field{month}{7}
+      \field{title}{有限元方法的数学基础}
+      \field{usera}{M}
+      \field{userd}{chinese}
+      \field{userf}{chinese}
+      \field{year}{2007}
+      \field{dateera}{ce}
+      \keyw{有限元方法的数学基础}
+    \endentry
+    \entry{FEMCode}{online}{}
+      \name{author}{1}{}{%
+        {{hash=2b01d303567b99056235e81bd74fd50e}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Long},
+           giveni={L\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {english}%
+      }
+      \strng{namehash}{2b01d303567b99056235e81bd74fd50e}
+      \strng{fullhash}{2b01d303567b99056235e81bd74fd50e}
+      \strng{bibnamehash}{2b01d303567b99056235e81bd74fd50e}
+      \strng{authorbibnamehash}{2b01d303567b99056235e81bd74fd50e}
+      \strng{authornamehash}{2b01d303567b99056235e81bd74fd50e}
+      \strng{authorfullhash}{2b01d303567b99056235e81bd74fd50e}
+      \field{extraname}{1}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{langid}{english}
+      \field{lansortorder}{4}
+      \field{title}{Programming Of Finite Element Methods in MATLAB}
+      \field{usera}{EB}
+      \field{userd}{english}
+      \field{userf}{english}
+      \verb{urlraw}
+      \verb https://www.math.uci.edu/~chenlong/226/Ch3FEMCode.pdf
+      \endverb
+      \verb{url}
+      \verb https://www.math.uci.edu/~chenlong/226/Ch3FEMCode.pdf
+      \endverb
+      \keyw{FEMCode}
+      \warn{\item Entry 'FEMCode' (bib/sample.bib): Invalid format 'September 29, 2021' of date field 'urldate' - ignoring}
+    \endentry
+    \entry{FEM程序理论}{online}{}
+      \name{author}{1}{}{%
+        {{hash=2b01d303567b99056235e81bd74fd50e}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Long},
+           giveni={L\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {english}%
+      }
+      \strng{namehash}{2b01d303567b99056235e81bd74fd50e}
+      \strng{fullhash}{2b01d303567b99056235e81bd74fd50e}
+      \strng{bibnamehash}{2b01d303567b99056235e81bd74fd50e}
+      \strng{authorbibnamehash}{2b01d303567b99056235e81bd74fd50e}
+      \strng{authornamehash}{2b01d303567b99056235e81bd74fd50e}
+      \strng{authorfullhash}{2b01d303567b99056235e81bd74fd50e}
+      \field{extraname}{2}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{langid}{english}
+      \field{lansortorder}{4}
+      \field{title}{Introduction Of Finite Element Methods}
+      \field{usera}{EB}
+      \field{userd}{english}
+      \field{userf}{english}
+      \verb{urlraw}
+      \verb https://www.math.uci.edu/~chenlong/226/Ch2FEM.pdf
+      \endverb
+      \verb{url}
+      \verb https://www.math.uci.edu/~chenlong/226/Ch2FEM.pdf
+      \endverb
+      \keyw{FEM程序理论}
+      \warn{\item Entry 'FEM程序理论' (bib/sample.bib): Invalid format 'September 29, 2021' of date field 'urldate' - ignoring}
+    \endentry
+    \entry{iFEM}{online}{}
+      \name{author}{1}{}{%
+        {{hash=2b01d303567b99056235e81bd74fd50e}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Long},
+           giveni={L\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {chinese}%
+      }
+      \strng{namehash}{2b01d303567b99056235e81bd74fd50e}
+      \strng{fullhash}{2b01d303567b99056235e81bd74fd50e}
+      \strng{bibnamehash}{2b01d303567b99056235e81bd74fd50e}
+      \strng{authorbibnamehash}{2b01d303567b99056235e81bd74fd50e}
+      \strng{authornamehash}{2b01d303567b99056235e81bd74fd50e}
+      \strng{authorfullhash}{2b01d303567b99056235e81bd74fd50e}
+      \field{extraname}{3}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{langid}{english}
+      \field{lansortorder}{1}
+      \field{title}{iFEM软件包}
+      \field{usera}{EB}
+      \field{userd}{chinese}
+      \field{userf}{english}
+      \verb{urlraw}
+      \verb https://github.com/lyc102/ifem
+      \endverb
+      \verb{url}
+      \verb https://github.com/lyc102/ifem
+      \endverb
+      \keyw{iFEM}
+      \warn{\item Entry 'iFEM' (bib/sample.bib): Invalid format 'September 29, 2021' of date field 'urldate' - ignoring}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

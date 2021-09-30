@@ -1,0 +1,20 @@
+[0] Config.pm:311> INFO - This is Biber 2.16
+[1] Config.pm:314> INFO - Logfile is 'CRP0.blg'
+[119] biber-darwin:340> INFO - === 三  9 29, 2021, 20:04:52
+[176] Biber.pm:415> INFO - Reading 'CRP0.bcf'
+[390] Biber.pm:949> INFO - Using all citekeys in bib section 0
+[426] Biber.pm:4340> INFO - Processing section 0
+[464] Biber.pm:4531> INFO - Looking for bibtex format file 'bib/sample.bib' for section 0
+[468] bibtex.pm:1689> INFO - LaTeX decoding ...
+[478] bibtex.pm:1494> INFO - Found BibTeX data source 'bib/sample.bib'
+[543] Utils.pm:395> WARN - Entry 'FEM程序理论' (bib/sample.bib): Invalid format 'September 29, 2021' of date field 'urldate' - ignoring
+[556] Utils.pm:395> WARN - Entry 'FEM-何晓明' (bib/sample.bib): Invalid format 'September 29, 2021' of date field 'urldate' - ignoring
+[569] Utils.pm:395> WARN - Entry 'FEMCode' (bib/sample.bib): Invalid format 'September 29, 2021' of date field 'urldate' - ignoring
+[585] Utils.pm:395> WARN - Entry 'iFEM' (bib/sample.bib): Invalid format 'September 29, 2021' of date field 'urldate' - ignoring
+[617] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[617] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[617] Biber.pm:4168> INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'en-US'
+[618] Biber.pm:4174> INFO - No sort tailoring available for locale 'en-US'
+[660] bbl.pm:654> INFO - Writing 'CRP0.bbl' with encoding 'UTF-8'
+[667] bbl.pm:757> INFO - Output to CRP0.bbl
+[669] Biber.pm:128> INFO - WARNINGS: 4
