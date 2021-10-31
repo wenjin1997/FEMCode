@@ -1,6 +1,6 @@
 \documentclass{ctexart}
 % \usepackage[UTF-8]{ctex}
-\usepackage{amsmath}
+\usepackage{amsmath}   
 \usepackage{booktabs}
 \usepackage{multirow}
 \usepackage{tabularx}
@@ -11,12 +11,12 @@
 \usepackage{color}
 
 % 插入Matlab代码设置
-% \usepackage[framed, numbered, autolinebreaks, useliterate]{mcode}
+\usepackage[framed, numbered, autolinebreaks, useliterate]{mcode}
 
 %导言区插入下面三行
 \usepackage{graphicx} %插入图片的宏包
 \usepackage{float} %设置图片浮动位置的宏包
-\usepackage{subfigure} %插入多图时用子图显示的宏包
+\usepackage{subfigure} %插 入多图时用子图显示的宏包
 
 % % 参考文献
 % % 注意参考文献请用Biber编译，不能使用BiberTex或者BiberTex-8
@@ -124,31 +124,8 @@ $$
 c(\mathbf{w,u,v})= ((\mathbf{w} \cdot \nabla)\mathbf{u}, \mathbf{v}).
 $$
 
-\subsection{推导$c(\mathbf{u}_h^{(l-1)}, \mathbf{u}_h^{(l)}, \mathbf{v}_h)$}
-为了方便描述，这里假设牛顿迭代前一步得到的为$\mathbf{u}_h^0$,现在要求的是$\mathbf{u}_h$，则
-\begin{align*}
-    & c(\mathbf{u}_h^{0}, \mathbf{u}_h, \mathbf{v}_h)\\ 
-    & = \iint_K(\vec{u} _h^0 \cdot \nabla) \vec{u}_h\cdot \vec{v}_hdxdy\\ 
-    & = \iint_K(u_{h1}^0 \partial_x + u_{h2}^0 \partial_y) \vec{u}_h \cdot \vec{v}_h dxdy\\
-    & = \iint_K \begin{pmatrix}
-     u_{h1}^0\partial _xu_1 + u_{h2}^0\partial _yu_1 \\
-     u_{h1}^0\partial _xu_2 + u_{h2}^0\partial _yu_2
-    \end{pmatrix}
-    \cdot \begin{pmatrix}
-     v_1\\
-    v_2
-    \end{pmatrix}dxdy\\
-    & = \iint_K \begin{pmatrix}
-     \vec{u}_h^0 \cdot (\nabla u_1) \\
-     \vec{u}_h^0 \cdot (\nabla u_2)
-    \end{pmatrix}
-    \cdot \begin{pmatrix}
-     v_1\\
-    v_2
-    \end{pmatrix}dxdy\\
-    & = \iint_K (\vec{u}_h^0 \cdot (\nabla u_1)) v_1 + (\vec{u}_h^0 \cdot (\nabla u_2)) v_2dxdy.
-\end{align*}
-其中
+\subsection{常用等式}
+常用向量展开：
 $$
 \vec{u}_h = \begin{pmatrix}
     \phi_1&  \phi_2& \phi_3 & 0 & 0 & 0\\
@@ -188,4 +165,612 @@ v_i =
 \quad i=1,2.
 $$
 
+常用重心坐标函数积分：
+\begin{equation}
+    \int _K \boldsymbol{\lambda} ^\alpha (\boldsymbol{x})d\boldsymbol{x} = 
+    \frac{\alpha!n!}{(|\alpha|+ n)!} |K|.
+\end{equation}
+其中$\alpha$是多重指标，$\alpha = (\alpha_1,\alpha_2,\cdots,\alpha_k)$。$\alpha$的长度$|\alpha|=\sum_{i=1}^{k}\alpha _i $，
+$\alpha! = \alpha_1!\alpha_2!\cdots \alpha_k!$。对于一个给定的向量$\boldsymbol{x}=(x_1,x_2,\dots,x_k)$，$\boldsymbol{x}^\alpha
+= x_1^{\alpha_1}x_2^{\alpha_2}\cdots x_k^{\alpha_k}$。最后设$\boldsymbol{\lambda}=(\lambda_1,\lambda_2,\cdots,\lambda_{n+1})$
+表示重心坐标向量，$n$表示空间的维数。
+
+对于维数为2的情况，有
+\begin{align*}
+    \iint_K \lambda _i^2dxdy & = \frac{2!2!}{(2+2)!} |K| \\
+    & = \frac{4}{4!}|K|\\
+    & = \frac{1}{6}|K|  
+\end{align*}
+
+\begin{align*}
+    \iint_K \lambda _idxdy & = \frac{2!}{(1+2)!} |K| \\
+    & = \frac{2}{3!}|K|\\
+    & = \frac{1}{3}|K|  
+\end{align*}
+
+当$i \neq j$时
+\begin{align*}
+    \iint_K \lambda _i \lambda _jdxdy  & = \frac{2!}{(2+2)!} |K| \\
+    & = \frac{2}{4!}|K|\\
+    & = \frac{1}{12}|K|
+\end{align*}
+
+下面推导在三角形单元上基函数积分$\iint_K \phi_i\phi_jdxdy$，由上述重心坐标函数积分得
+
+当$i=j$时
+\begin{align*}
+    \iint_K \phi _i \phi_jdxdy  & = \iint_K \phi _i^2dxdy \\
+    & = 4\iint_K(\lambda _i - \frac{1}{2})^2dxdy\\
+    & = 4\iint_K(\lambda _i^2 -\lambda _i+ \frac{1}{4} )dxdy\\
+    & = 4|K|(\frac{1}{6}-\frac{1}{3} + \frac{1}{4})\\
+    & = 4|K|(\frac{2}{12}-\frac{4}{12} + \frac{3}{12})\\
+    & = \frac{|K|}{3},
+\end{align*}
+
+当$i \neq j$时
+\begin{align*}
+    \iint_K \phi _i \phi_jdxdy  & = 4\iint_K(\lambda _i - \frac{1}{2})(\lambda _j - \frac{1}{2})dxdy \\
+    & = 4\iint_K(\lambda _i\lambda _j - \frac{1}{2}\lambda _i - \frac{1}{2}\lambda _j + \frac{1}{4})dxdy\\
+    & = 4|K|(\frac{1}{12}-\frac{1}{2} \times \frac{1}{3} -\frac{1}{2} \times \frac{1}{3} + \frac{1}{4})\\
+    & = 4|K|(\frac{1}{12}-\frac{2}{12} -\frac{2}{12} + \frac{3}{12})\\
+    & = 0.
+\end{align*}
+
+
+
+\subsection{推导$c(\mathbf{u}_h^{(l)}, \mathbf{u}_h^{(l-1)}, \mathbf{v}_h)$，矩阵NA}
+为了方便描述，这里假设牛顿迭代前一步得到的为$\mathbf{u}_h^0$,现在要求的是$\mathbf{u}_h$，则
+
+\begin{align*}
+    & c(\mathbf{u}_h^{l}, \mathbf{u}_h^{(l-1)}, \mathbf{v}_h)\\
+    & = \iint_K(\vec{u} \cdot \nabla) \vec{u}^0vdxdy \\
+    & = \iint_K(u_1 \partial x + u_2 \partial _y)\begin{pmatrix}
+     u_1^0\\
+     u_2^0
+    \end{pmatrix} \cdot \begin{pmatrix}
+     v_1\\
+    v_2
+    \end{pmatrix}dxdy\\
+    & = \iint_K\begin{pmatrix}
+     u_1 \partial xu_1^0 + u_2 \partial _y u_1^0\\
+     u_1 \partial xu_2^0 + u_2 \partial _y u_2^0
+    \end{pmatrix} \cdot \begin{pmatrix}
+     v_1\\
+    v_2
+    \end{pmatrix}dxdy\\
+    & = \iint_K(\vec{u} \cdot (\nabla u_1^0) )v_1+(\vec{u} \cdot (\nabla u_2^0))v_2dxdy
+\end{align*}
+
+展开得到
+
+\begin{align*}
+    & c(\mathbf{u}_h^{l}, \mathbf{u}_h^{(l-1)}, \mathbf{v}_h)\\
+    & = \iint_K
+\begin{pmatrix}
+    \phi_1&  \phi_2& \phi_3 & 0 & 0 & 0\\
+    0 & 0 & 0 & \phi_1 & \phi_2 & \phi_3
+  \end{pmatrix} 
+  \begin{pmatrix}
+   u_{11}\\
+   u_{12}\\
+   u_{13}\\
+   u_{21}\\
+   u_{22}\\
+   u_{23}
+  \end{pmatrix} \\
+  & \cdot
+(\nabla \phi_1 u_{11}^0 + \nabla \phi_1 u_{12}^0 + \nabla \phi_1 u_{13}^0 )\begin{pmatrix}
+  v_{11}& v_{12} & v_{13}
+\end{pmatrix}
+\begin{pmatrix}
+ \phi_1\\
+ \phi_2\\
+ \phi_3
+\end{pmatrix}\\
+& +
+\begin{pmatrix}
+    \phi_1&  \phi_2& \phi_3 & 0 & 0 & 0\\
+    0 & 0 & 0 & \phi_1 & \phi_2 & \phi_3
+  \end{pmatrix} 
+  \begin{pmatrix}
+   u_{11}\\
+   u_{12}\\
+   u_{13}\\
+   u_{21}\\
+   u_{22}\\
+   u_{23}
+  \end{pmatrix} \\
+  & \cdot
+(\nabla \phi_1 u_{21}^0 + \nabla \phi_1 u_{22}^0 + \nabla \phi_1 u_{23}^0 )\begin{pmatrix}
+  v_{21}& v_{22} & v_{23}
+\end{pmatrix}
+\begin{pmatrix}
+ \phi_1\\
+ \phi_2\\
+ \phi_3
+\end{pmatrix}dxdy\\
+&=\begin{pmatrix}
+  v_1^T&v_2^T
+\end{pmatrix}
+\iint_K \\
+& \begin{bmatrix}
+ \begin{pmatrix}
+ \phi_1\\
+ \phi_2\\
+ \phi_3
+\end{pmatrix}
+\begin{pmatrix}
+ u_{11}^0 &  u_{12}^0  & u_{13}^0 
+\end{pmatrix}
+\begin{pmatrix}
+ \nabla \phi_1\\
+ \nabla \phi_2\\
+ \nabla \phi_3
+\end{pmatrix}
+\begin{pmatrix}
+  \phi_1& \phi_2 & \phi_3 & 0 & 0 & 0\\
+  0&  0&  0& \phi_1 & \phi_2 & \phi_3
+\end{pmatrix}
+\\
+\begin{pmatrix}
+ \phi_1\\
+ \phi_2\\
+ \phi_3
+\end{pmatrix}
+\begin{pmatrix}
+ u_{21}^0 &  u_{22}^0  & u_{23}^0 
+\end{pmatrix}
+\begin{pmatrix}
+ \nabla \phi_1\\
+ \nabla \phi_2\\
+ \nabla \phi_3
+\end{pmatrix}
+\begin{pmatrix}
+  \phi_1& \phi_2 & \phi_3 & 0 & 0 & 0\\
+  0&  0&  0& \phi_1 & \phi_2 & \phi_3
+\end{pmatrix}
+\end{bmatrix}dxdy\vec{u} 
+\end{align*}
+
+记
+$$
+sumUvec1 = \begin{pmatrix}
+ u_{11}^0 &  u_{12}^0  & u_{13}^0 
+\end{pmatrix}
+\begin{pmatrix}
+ \nabla \phi_1\\
+ \nabla \phi_2\\
+ \nabla \phi_3
+\end{pmatrix}
+$$
+
+$$
+sumUvec2 = \begin{pmatrix}
+    u_{21}^0 &  u_{22}^0  & u_{23}^0 
+   \end{pmatrix}
+   \begin{pmatrix}
+    \nabla \phi_1\\
+    \nabla \phi_2\\
+    \nabla \phi_3
+   \end{pmatrix}
+$$
+
+我们可以知道矩阵$sumUvec1$及$sumUvec2$均为$1\times 2$矩阵，记$sumUvec1(i)$及$sumUvec2(i)$为矩阵的第一行第$i$列元素。
+下面计算推算矩阵NA：
+
+\begin{align*}
+    & NA\\
+    & = \iint_K \\
+    &
+    \begin{bmatrix}
+    \begin{pmatrix}
+     \phi_1\\
+     \phi_2\\
+     \phi_3
+    \end{pmatrix}
+    \begin{pmatrix}
+      sumUvec1(1)&sumUvec1(2)
+    \end{pmatrix}
+    \begin{pmatrix}
+      \phi_1& \phi_2 & \phi_3 & 0 & 0 & 0\\
+      0&  0& 0 & \phi_1 & \phi_2 & \phi_3
+    \end{pmatrix}
+     \\
+    \begin{pmatrix}
+     \phi_1\\
+     \phi_2\\
+     \phi_3
+    \end{pmatrix}
+    \begin{pmatrix}
+      sumUvec2(1)&sumUvec2(2)
+    \end{pmatrix}
+    \begin{pmatrix}
+      \phi_1& \phi_2 & \phi_3 & 0 & 0 & 0\\
+      0&  0& 0 & \phi_1 & \phi_2 & \phi_3
+    \end{pmatrix} 
+    \end{bmatrix}\\
+    & dxdy \\
+    & = \iint_K \\
+    &
+    \begin{bmatrix}
+    \begin{pmatrix}
+      \phi_1 sumUvec1(1)&  \phi_1 sumUvec1(2)\\
+      \phi_2 sumUvec1(1)&  \phi_2 sumUvec1(2) \\
+      \phi_3 sumUvec1(1)&  \phi_3 sumUvec1(2)
+    \end{pmatrix}
+    \begin{pmatrix}
+      \phi_1& \phi_2 & \phi_3 & 0 & 0 & 0\\
+      0&  0& 0 & \phi_1 & \phi_2 & \phi_3
+    \end{pmatrix}   
+    \\
+    \begin{pmatrix}
+      \phi_1 sumUvec2(1)&  \phi_1 sumUvec2(2)\\
+      \phi_2 sumUvec2(1)&  \phi_2 sumUvec2(2) \\
+      \phi_3 sumUvec2(1)&  \phi_3 sumUvec2(2)
+    \end{pmatrix}
+    \begin{pmatrix}
+      \phi_1& \phi_2 & \phi_3 & 0 & 0 & 0\\
+      0&  0& 0 & \phi_1 & \phi_2 & \phi_3
+    \end{pmatrix}   
+    \end{bmatrix} \\
+    & dxdy \\
+    & = \frac{|K|}{3} \times \\
+    & \begin{bmatrix}
+      Uvec1(1)& 0 & 0 & Uvec1(2) & 0 & 0 \\
+      0 & Uvec1(1) & 0 &  0 & Uvec1(2) & 0\\
+      0 & 0 & Uvec1(1) &  0 & 0 &  Uvec1(2)\\
+     Uvec2(1)& 0 & 0 & Uvec2(2) & 0 & 0 \\
+      0 & Uvec2(1) & 0 &  0 & Uvec2(2) & 0\\
+      0 & 0 & Uvec2(1) &  0 & 0 &  Uvec2(2)
+    \end{bmatrix}
+\end{align*}
+
+生成NA矩阵的Matlab代码如下：
+\begin{lstlisting}
+%% 计算左端矩阵c(u^(l), u^(l), v)：NA
+NA1 = sparse(Nu,Nu);
+NA2 = sparse(Nu,Nu);
+NA3 = sparse(Nu,Nu);
+NA4 = sparse(Nu,Nu);
+sumUvec1 = zeros(NT,1,2);
+sumUvec2 = zeros(NT,1,2);
+test2 = sumUvec1(:,:,1);
+for i = 1:NT
+    sumUvec1(i,:)=reshape(u0vec(i,1:3),1,3)*reshape(Dlambda(i,:),3,2);
+    sumUvec2(i,:)=reshape(u0vec(i,4:6),1,3)*reshape(Dlambda(i,:),3,2);
+end
+for i = 1:3
+    for j = 1:3
+        % 局部节点到全局节点
+        ii = double(elem2dof(:,i));
+        jj = double(elem2dof(:,j));
+        if(i==j)
+            NA1 = NA1 + sparse(ii,jj,sumUvec1(:,:,1).*area(:)/3,Nu,Nu); 
+            NA2 = NA2 + sparse(ii,jj,sumUvec1(:,:,2).*area(:)/3,Nu,Nu); 
+            NA3 = NA3 + sparse(ii,jj,sumUvec2(:,:,1).*area(:)/3,Nu,Nu); 
+            NA4 = NA4 + sparse(ii,jj,sumUvec2(:,:,2).*area(:)/3,Nu,Nu); 
+        end 
+    end
+end
+NA = [NA1 NA2; NA3 NA4];
+clear NA1 NA2 NA3 NA4
+\end{lstlisting}
+
+
+\subsection{推导$c(\mathbf{u}_h^{(l-1)}, \mathbf{u}_h^{(l)}, \mathbf{v}_h)$，矩阵NB}
+
+\begin{align*}
+    & c(\mathbf{u}_h^{0}, \mathbf{u}_h, \mathbf{v}_h)\\ 
+    & = \iint_K(\vec{u} _h^0 \cdot \nabla) \vec{u}_h\cdot \vec{v}_hdxdy\\ 
+    & = \iint_K(u_{h1}^0 \partial_x + u_{h2}^0 \partial_y) \vec{u}_h \cdot \vec{v}_h dxdy\\
+    & = \iint_K \begin{pmatrix}
+     u_{h1}^0\partial _xu_1 + u_{h2}^0\partial _yu_1 \\
+     u_{h1}^0\partial _xu_2 + u_{h2}^0\partial _yu_2
+    \end{pmatrix}
+    \cdot \begin{pmatrix}
+     v_1\\
+    v_2
+    \end{pmatrix}dxdy\\
+    & = \iint_K \begin{pmatrix}
+     \vec{u}_h^0 \cdot (\nabla u_1) \\
+     \vec{u}_h^0 \cdot (\nabla u_2)
+    \end{pmatrix}
+    \cdot \begin{pmatrix}
+     v_1\\
+    v_2
+    \end{pmatrix}dxdy\\
+    & = \iint_K (\vec{u}_h^0 \cdot (\nabla u_1)) v_1 + (\vec{u}_h^0 \cdot (\nabla u_2)) v_2dxdy.
+\end{align*}
+
+因此
+\begin{align*}
+    & c(\boldsymbol{u}_h^{(l-1)}, \boldsymbol{u}_h^{(l)}, \boldsymbol{v}_h) \\
+    & = \iint_K (\vec{u}_h^0 \cdot (\nabla u_1)) v_1 + (\vec{u}_h^0 \cdot (\nabla u_2)) v_2dxdy\\
+    & = \iint_K \begin{pmatrix}
+      \phi_1&  \phi_2 &  \phi_3 & 0 & 0 & 0\\
+      0 & 0 & 0 & \phi_1 & \phi_2 & \phi_3
+    \end{pmatrix}
+    \begin{pmatrix}
+     u_{11}^0\\
+     u_{12}^0\\
+     u_{13}^0\\
+     u_{21}^0\\
+     u_{21}^0\\
+     u_{21}^0
+    \end{pmatrix} \\
+    & \cdot 
+    \begin{pmatrix}
+     \nabla \phi_1 & \nabla \phi_2 & \nabla \phi_3
+    \end{pmatrix}
+    \begin{pmatrix}
+     u_{11}\\
+     u_{12}\\
+     u_{13}
+    \end{pmatrix}
+    \begin{pmatrix}
+     v_{11} & v_{12} & v_{13}
+    \end{pmatrix}
+    \begin{pmatrix}
+     \phi_1\\
+     \phi_2\\
+    \phi_3
+    \end{pmatrix}\\
+    & + 
+    \begin{pmatrix}
+      \phi_1&  \phi_2 &  \phi_3 & 0 & 0 & 0\\
+      0 & 0 & 0 & \phi_1 & \phi_2 & \phi_3
+    \end{pmatrix}
+    \begin{pmatrix}
+     u_{11}^0\\
+     u_{12}^0\\
+     u_{13}^0\\
+     u_{21}^0\\
+     u_{21}^0\\
+     u_{21}^0
+    \end{pmatrix} \\
+    & \cdot 
+    \begin{pmatrix}
+     \nabla \phi_1 & \nabla \phi_2 & \nabla \phi_3
+    \end{pmatrix}
+    \begin{pmatrix}
+     u_{21}\\
+     u_{22}\\
+     u_{23}
+    \end{pmatrix}
+    \begin{pmatrix}
+     v_{21} & v_{22} & v_{23}
+    \end{pmatrix}
+    \begin{pmatrix}
+     \phi_1\\
+     \phi_2\\
+    \phi_3
+    \end{pmatrix}dxdy\\
+    & = \begin{pmatrix}
+      v_1^T& v_2^T
+    \end{pmatrix}
+    \begin{pmatrix}
+      NB1& O_{3 \times 3}\\
+      O_{3 \times 3} & NB1
+    \end{pmatrix}
+    \begin{pmatrix}
+     \boldsymbol{u}_1\\
+     \boldsymbol{u}_2
+    \end{pmatrix}
+\end{align*}
+其中
+\begin{align*}
+    & NB1 \\
+    & = \iint_K 
+    \begin{pmatrix}
+     \phi_1\\
+     \phi_2\\
+    \phi_3
+    \end{pmatrix}
+    \begin{pmatrix}
+     u_{11}^0 \phi_1 + u_{12}^0 \phi_2  + u_{13}^0 \phi_3 
+    & u_{21}^0 \phi_1 + u_{22}^0 \phi_2  + u_{23}^0 \phi_3 
+    \end{pmatrix}dxdy\\
+    & \begin{pmatrix}
+     \nabla \phi_1 & \nabla \phi_1 & \nabla \phi_1
+    \end{pmatrix} \\
+    & = \frac{|K|}{3}\begin{pmatrix}
+      u_{11}^0& u_{21}^0 \\
+    u_{12}^0& u_{22}^0 \\
+     u_{13}^0& u_{23}^0 
+    \end{pmatrix} 
+    \begin{pmatrix}
+     \nabla \phi_1 & \nabla \phi_1 & \nabla \phi_1
+    \end{pmatrix}\\
+    &  = \frac{|K|}{3}\begin{pmatrix}
+        u_{11}^0& u_{21}^0 \\
+      u_{12}^0& u_{22}^0 \\
+       u_{13}^0& u_{23}^0 
+      \end{pmatrix} 
+      \begin{pmatrix}
+       \frac{\partial \phi_1}{\partial x} & \frac{\partial \phi_2}{\partial x}  & 
+       \frac{\partial \phi_3}{\partial x}  \\
+       \frac{\partial \phi_1}{\partial y} & \frac{\partial \phi_2}{\partial y}  & 
+       \frac{\partial \phi_3}{\partial y} 
+      \end{pmatrix}
+\end{align*}
+因此
+$$
+NB1_{ij} = \frac{|K|}{3}(u_{1i}^0 \frac{\partial \phi_j}{\partial x}+u_{2i}^0 \frac{\partial \phi_j}{\partial y}) 
+$$
+设
+$$
+newU0vec = 
+\begin{pmatrix}
+    u_{11}^0& u_{21}^0 \\
+    u_{12}^0& u_{22}^0 \\
+     u_{13}^0& u_{23}^0
+\end{pmatrix}
+$$
+
+生成矩阵NA的Matlab代码如下：
+\begin{lstlisting}
+%% 计算左端矩阵c(u^(l-1), u^(l), v)：NB
+NB = sparse(Nu,Nu);
+newU0vec = reshape(u0vec,NT,3,2);
+for i = 1 : 3
+    for j = 1 : 3
+        % 局部节点到全局节点
+        ii = double(elem2dof(:,i));
+        jj = double(elem2dof(:,j));
+        NBij = (newU0vec(:,i,1).*Dlambda(:,1,j) + ...
+            newU0vec(:,i,2).*Dlambda(:,2,j)).*area(:)/3;
+        NB = NB + sparse(ii,jj,NBij,Nu,Nu);
+    end
+end
+clear NBij
+NB = blkdiag(NB,NB);
+\end{lstlisting}
+
+\subsection{推导$c(\mathbf{u}_h^{(l-1)}, \mathbf{u}_h^{(l-1)}, \mathbf{v}_h)$，矩阵NF}
+\begin{align*}
+    & c(\mathbf{u}_h^{0}, \mathbf{u}_h^0, \mathbf{v}_h)\\ 
+    & = \iint_K(\vec{u} _h^0 \cdot \nabla) \vec{u}_h^0\cdot \vec{v}_hdxdy\\ 
+    & = \iint_K(u_{h1}^0 \partial_x + u_{h2}^0 \partial_y) \vec{u}_h^0 \cdot \vec{v}_h dxdy\\
+    & = \iint_K \begin{pmatrix}
+     u_{h1}^0\partial _xu_1^0 + u_{h2}^0\partial _yu_1^0 \\
+     u_{h1}^0\partial _xu_2^0 + u_{h2}^0\partial _yu_2^0
+    \end{pmatrix}
+    \cdot \begin{pmatrix}
+     v_1\\
+    v_2
+    \end{pmatrix}dxdy\\
+    & = \iint_K \begin{pmatrix}
+     \vec{u}_h^0 \cdot (\nabla u_1^0) \\
+     \vec{u}_h^0 \cdot (\nabla u_2^0)
+    \end{pmatrix}
+    \cdot \begin{pmatrix}
+     v_1\\
+    v_2
+    \end{pmatrix}dxdy\\
+    & = \iint_K (\vec{u}_h^0 \cdot (\nabla u_1^0)) v_1 + (\vec{u}_h^0 \cdot (\nabla u_2^0)) v_2dxdy.
+\end{align*}
+
+因此
+
+\begin{align*}
+    & c(\boldsymbol{u}_h^{(l-1)}, \boldsymbol{u}_h^{(l-1)}, \boldsymbol{v}_h) \\
+    & = \iint_K (\vec{u}_h^0 \cdot (\nabla u_1^0)) v_1 + (\vec{u}_h^0 \cdot (\nabla u_2^0)) v_2dxdy\\
+    & = \iint_K \begin{pmatrix}
+      \phi_1&  \phi_2 &  \phi_3 & 0 & 0 & 0\\
+      0 & 0 & 0 & \phi_1 & \phi_2 & \phi_3
+    \end{pmatrix}
+    \begin{pmatrix}
+     u_{11}^0\\
+     u_{12}^0\\
+     u_{13}^0\\
+     u_{21}^0\\
+     u_{21}^0\\
+     u_{21}^0
+    \end{pmatrix} \\
+    & \cdot 
+    \begin{pmatrix}
+     \nabla \phi_1 & \nabla \phi_2 & \nabla \phi_3
+    \end{pmatrix}
+    \begin{pmatrix}
+     u_{11}^0\\
+     u_{12}^0\\
+     u_{13}^0
+    \end{pmatrix}
+    \begin{pmatrix}
+     v_{11} & v_{12} & v_{13}
+    \end{pmatrix}
+    \begin{pmatrix}
+     \phi_1\\
+     \phi_2\\
+    \phi_3
+    \end{pmatrix}\\
+    & + 
+    \begin{pmatrix}
+      \phi_1&  \phi_2 &  \phi_3 & 0 & 0 & 0\\
+      0 & 0 & 0 & \phi_1 & \phi_2 & \phi_3
+    \end{pmatrix}
+    \begin{pmatrix}
+     u_{11}^0\\
+     u_{12}^0\\
+     u_{13}^0\\
+     u_{21}^0\\
+     u_{21}^0\\
+     u_{21}^0
+    \end{pmatrix} \\
+    & \cdot 
+    \begin{pmatrix}
+     \nabla \phi_1 & \nabla \phi_2 & \nabla \phi_3
+    \end{pmatrix}
+    \begin{pmatrix}
+     u_{21}^0\\
+     u_{22}^0\\
+     u_{23}^0
+    \end{pmatrix}
+    \begin{pmatrix}
+     v_{21} & v_{22} & v_{23}
+    \end{pmatrix}
+    \begin{pmatrix}
+     \phi_1\\
+     \phi_2\\
+    \phi_3
+    \end{pmatrix}dxdy\\
+    & = \begin{pmatrix}
+      v_1^T& v_2^T
+    \end{pmatrix}
+    \begin{pmatrix}
+      NF1_{3 \times 1}\\
+      NF2_{3 \times 1}
+    \end{pmatrix}
+    \begin{pmatrix}
+     \boldsymbol{u}_1\\
+     \boldsymbol{u}_2
+    \end{pmatrix}
+\end{align*}
+其中
+\begin{align*}
+    & NF1\\
+ & =\iint_K
+ \begin{pmatrix}
+  \phi_1\\
+  \phi_2\\
+ \phi_3
+ \end{pmatrix} 
+ \begin{pmatrix}
+   u_{11}^0\phi_1 + u_{12}^0\phi_2 + u_{13}^0\phi_3&
+ u_{21}^0\phi_1 + u_{22}^0\phi_2 + u_{23}^0\phi_3
+ \end{pmatrix}dxdy
+ [sumUvec1]^T
+ \\
+ & = \frac{|K|}{3}
+ \begin{pmatrix}
+   u_{11}^0 &  u_{21}^0 \\
+    u_{12}^0 &  u_{22}^0 \\
+    u_{13}^0 &  u_{23}^0
+ \end{pmatrix}[sumUvec1]^T\\
+ & = \frac{|K|}{3}\mathbf{newU0vec}  [sumUvec1]^T
+ \end{align*}
+
+因此
+$$
+NF= \frac{|K|}{3}\begin{pmatrix}
+    \mathbf{newU0vec} [sumUvec1]^T\\
+    \mathbf{newU0vec} [sumUvec2]^T
+\end{pmatrix}
+$$
+
+生成矩阵NF的Matlab代码如下：
+\begin{lstlisting}
+%% 计算右端矩阵c(u^(l-1), u^(l-1), v)：NF
+nf1 = zeros(NT,3,1);
+nf2 = zeros(NT,3,1);
+for i = 1 : NT
+    nf1(i,:,:) = reshape(newU0vec(i,:,:),3,2)*reshape(sumUvec1(i,:,:),2,1)...
+    .*area(i)/3;
+    nf2(i,:,:) = reshape(newU0vec(i,:,:),3,2)*reshape(sumUvec2(i,:,:),2,1)...
+    .*area(i)/3;
+end
+NF1 = accumarray(elem2dof(:),[nf1(:,1); nf1(:,2); nf1(:,3)],[Nu 1]);
+NF2 = accumarray(elem2dof(:),[nf2(:,1); nf2(:,2); nf2(:,3)],[Nu 1]);
+NF = [NF1;NF2];
+\end{lstlisting}
 \end{document}
